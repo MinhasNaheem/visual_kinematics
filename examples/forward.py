@@ -17,6 +17,7 @@ def main():
                             [0.0, 0,  -0.5 * pi, 0],
                             [0.065, 0,  0,0 ]])
         theta = np.array([np.deg2rad(45.), np.deg2rad(0.), np.deg2rad(30.), np.deg2rad(45.), np.deg2rad(-45.), np.deg2rad(-45.)])
+        theta = np.array([np.deg2rad(0.), np.deg2rad(0.), np.deg2rad(0.), np.deg2rad(0.), np.deg2rad(0.), np.deg2rad(0.)])
     else:
 
         dh_params = np.array([[0.32, 0.10,pi*0.5, pi*0.5],#1 trial
@@ -26,6 +27,7 @@ def main():
                             [0.0, 0,  0.5 * pi, 0],
                             [0.065, 0,  0,0 ]])
         theta = np.array([np.deg2rad(45.), np.deg2rad(0.), np.deg2rad(30.), np.deg2rad(45.), np.deg2rad(45.), np.deg2rad(45.)])
+        theta = np.array([np.deg2rad(0.), np.deg2rad(0.), np.deg2rad(0.), np.deg2rad(0.), np.deg2rad(0.), np.deg2rad(0.)])
 
 
     robot = RobotSerial(dh_params)

@@ -2,6 +2,8 @@ import numpy as np
 
 from visual_kinematics.Robot import *
 from visual_kinematics.utility import simplify_angles
+
+from math import pi
 import logging
 
 
@@ -158,3 +160,21 @@ class RobotSerial(Robot):
         self.ax.plot_wireframe(np.array([f[0, 3], f[0, 3] + 0.2 * f[0, 2]]),
                                np.array([f[1, 3], f[1, 3] + 0.2 * f[1, 2]]),
                                np.array([[f[2, 3], f[2, 3] + 0.2 * f[2, 2]]]), color="blue")
+        
+if __name__ == "__main__":
+    dh_params = np.array([[0.32, 0.10,pi*0.5, pi*0.5],#1 trial
+                    [0.,0.4, 0, pi*0.5],#2
+                    [0, 0, -0.5*pi, 0.],#3
+                    [-0.4, 0.0, 0.5 * pi, 0],#4
+                    [0.0, 0,  0.5 * pi, 0],
+                    [0.065, 0,  0,0 ]])
+    robot = RobotSerial(dh_params)
+    xyz = np.array([[0.38127], [0.], [0.9182]])
+    abc = np.array([0.5 * pi, 0., pi])
+    end = Frame.from_euler_3(abc, xyz)
+    robot.inverse(end)
+    print("inverse is successful: {0}".format(robot.is_reachable_inverse))
+    print("axis values: \n{0}".format(robot.axis_values))
+    robot.show()
+
+
