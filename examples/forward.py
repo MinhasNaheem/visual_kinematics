@@ -7,20 +7,27 @@ from math import pi
 
 def main():
     np.set_printoptions(precision=3, suppress=True)
+    # |  d  |  a  |  alpha  |  theta  |
 
-    dh_params = np.array([[0.163, 0., 0.5 * pi, 0.],
-                          [0., 0.632, pi, 0.5 * pi],
-                          [0., 0.6005, pi, 0.],
-                          [0.2013, 0., -0.5 * pi, -0.5 * pi],
-                          [0.1025, 0., 0.5 * pi, 0.],
-                          [0.094, 0., 0., 0.]])
+    dh_params = np.array([[0.32, 0.10,pi*0.5, pi*0.5],#1
+                          [0.,0.4, 0, pi*0.5],#2
+                          [0, 0, -0.5*pi, 0.],#3
+                          [-0.4, 0.0, -0.5 * pi, 0],#4
+                          [0.0, 0,  -0.5 * pi, 0],
+                          [0.065, 0,  0,0 ]])
+    # dh_params = np.array([[0.163, 0., 0.5 * pi, 0.],
+    #                       [0., 0.632, pi, 0.5 * pi],
+    #                       [0., 0.6005, pi, 0.],
+    #                       [0.2013, 0., -0.5 * pi, -0.5 * pi],
+    #                       [0.1025, 0., 0.5 * pi, 0.],
+    #                       [0.094, 0., 0., 0.]])
     robot = RobotSerial(dh_params)
 
     # =====================================
     # forward
     # =====================================
 
-    theta = np.array([0., 0., -0.25 * pi, 0., 0., 0.])
+    theta = np.array([np.deg2rad(0), np.deg2rad(0), np.deg2rad(0), np.deg2rad(0.), np.deg2rad(0.), np.deg2rad(0.)])
     f = robot.forward(theta)
 
     print("-------forward-------")
